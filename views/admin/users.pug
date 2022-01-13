@@ -1,0 +1,39 @@
+extends ../layouts/admin
+block content
+    main
+        .container-fluid
+            h1.mt-4 Quản lý danh sách người dùng
+            ol.breadcrumb.mb-4
+                li.breadcrumb-item
+                    a(href='/admin') Admin
+                li.breadcrumb-item.active User
+            .card.mb-4
+                .card-body
+                    span(style="color: blue") Trang quản lý danh sách các users
+            .card.mb-4
+                .card-header
+                    .row
+                        .col-sm-9.col-md-10
+                            i.fas.fa-table.mr-1
+                            span Người dùng
+                .card-body
+                    .table-responsive
+                        table#dataTable.table.table-bordered(width='100%', cellspacing='0')
+                            thead
+                                tr
+                                    th Username
+                                    th Họ tên
+                                    th Địa chỉ
+                                    th Số điện thoại
+                                    th Email
+                                    th Tác vụ
+                            tbody
+                                each user in users
+                                    tr
+                                        td= user.username
+                                        td= user.fullname
+                                        td= user.address
+                                        td= user.phone
+                                        td= user.email
+                                        td
+                                            a(href="/admin/users/delete="+user.id).btn.btn-danger Xóa

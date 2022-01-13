@@ -1,0 +1,28 @@
+extends ../layouts/index
+block content
+    .container
+        .row
+            form(action="/register", method="POST")
+                .from-group
+                    if(message)
+                        .alert.alert-success= message
+                .form-group
+                    label(for="user") Username
+                    input#user.form-control(type="text", name='username')
+                .form-group
+                    label(for="pass") Password
+                    input#pass.form-control(type="password", name='password')
+                .form-group
+                    label(for="fullname") Fullname
+                    input#pass.form-control(type="fullname", name='fullname')
+                .form-group
+                    label(for="address") Address
+                    input#pass.form-control(type="address", name='address')
+                .form-group
+                    label(for="phone") Phone
+                    input#pass.form-control(type="phone", name='phone')
+                .form-group
+                    label(for="email") Email
+                    input#pass.form-control(type="email", name='email')
+                .form-group
+                    button.btn.btn-primary Đăng ký

@@ -1,0 +1,45 @@
+extends ../layouts/admin
+block content
+
+    main
+        .container-fluid
+            h1.mt-4 Danh sách thông tin nhà
+            ol.breadcrumb.mb-4
+                li.breadcrumb-item
+                    a(href='/admin') Admin
+                li.breadcrumb-item.active List
+            .card.mb-4
+                .card-header
+                    .row
+                        .col-sm-9.col-md-10
+                            i.fas.fa-table.mr-1
+                            span Bảng thông tin nhà
+                        .col-sm-3.col-md-2
+                            a.btn.btn-primary(href="/admin/create/types") Thêm nhà
+                .card-body
+                    .table-responsive
+                        table#dataTable.table.table-bordered(width='100%', cellspacing='0')
+                            thead
+                                tr
+                                    th Tên nhà
+                                    th Loại Nhà
+                                    th Nội thất
+                                    th Thông tin
+                                    th Giá
+                                    th Địa Chỉ
+                                    th Tác vụ
+                            tbody
+                                each seed in seeds
+                                    tr
+                                        td= seed.name
+                                        td= seed.type
+                                        td= seed.furniture
+                                        td= seed.information
+                                        td= seed.price
+                                        td= seed.address
+                                        td
+                                            //- a.mb-2(href="/admin/views/id="+ seed.id).btn.btn-primary= seed.new? 'Mới': 'Cũ'
+                                            a(href="/admin/views/update="+ seed.id).btn.btn-success Sửa
+                                            a(href="/admin/views/delete="+ seed.id,).btn.btn-danger Xóa
+                                    
+

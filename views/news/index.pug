@@ -1,0 +1,40 @@
+extends ../layouts/index 
+block content
+    .container.mt-3
+        .row
+            .col-lg-8.ftco-animate.mt-4
+                block shows
+            .col-lg-4.sidebar.ftco-animate
+                .sidebar-box.ftco-animate
+                    h3.heading Danh sách tin tức
+                    ul.categories
+                        each item in news
+                            li
+                                a(href='/news')= item.name
+                .sidebar-box.ftco-animate
+                    h3.heading Tin tức mới nhất
+                    each items in news
+                        .block-21.mb-4.d-flex
+                            a.blog-img.mr-4
+                                img(src=items.image, alt="No images", style='width: 100%')
+                            .text
+                                h3.heading-1
+                                    a(href=items.id)= items.name
+                                .meta
+                                    div
+                                        a(href='#')
+                                            span.icon-calendar.mr-2 
+                                                span= items.address
+                                    div
+                                        a(href='#')
+                                            span.icon-person.mr-2 
+                                                span= items.poster
+                .sidebar-box.ftco-animate
+                    h3.heading Tag
+                    .tagcloud
+                        a.btn.btn-primary.py-2.px-3tag-cloud-link(href='#') Chung Cư
+                        a.btn.btn-primary.py-2.px-3tag-cloud-link(href='#') Nhà Riêng
+                        a.btn.btn-primary.py-2.px-3tag-cloud-link(href='#') Chung Cư Mini
+                        a.btn.btn-primary.py-2.px-3tag-cloud-link(href='#') Biệt Thự
+
+                        

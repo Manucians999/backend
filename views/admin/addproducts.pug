@@ -1,0 +1,11 @@
+extends ../layouts/admin
+block content
+
+    main
+        .container-fluid
+            .row.mt-2
+                .col-xl-12.col-md-12
+                    a.btn.btn-primary(href="/admin/create/types") Thông tin nhà mới
+                    a.btn.btn-primary.ml-3(href="/admin/create/kinds") Thông tin kiểu nhà mới
+                    a.btn.btn-primary.ml-3(href="/admin/create/products") Thêm thông tin nhà mới
+        block create

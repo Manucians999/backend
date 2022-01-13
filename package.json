@@ -1,0 +1,29 @@
+{
+  "name": "BTL_BE",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.1",
+    "md5": "^2.3.0",
+    "mongoose": "^5.11.0",
+    "multer": "^1.4.2",
+    "path": "^0.12.7",
+    "pug": "^3.0.0",
+    "sharp": "^0.27.0",
+    "view-engine": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

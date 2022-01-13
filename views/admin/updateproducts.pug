@@ -1,0 +1,58 @@
+extends ../layouts/admin
+block content
+
+    .container-fluid.mt-4
+        h1.mt-4 Cập nhật lại thông tin nhà
+        ol.breadcrumb.mb-4
+            li.breadcrumb-item.active 
+                a(href="/") Admin
+            li.breadcrumb-item
+                a(href="/admin/views") Views
+        .card.mb-4
+            .card-header
+                h3 Nhập thông tin sửa đổi thông tin nhà
+            .card-body
+                form(method="POST", onsubmit="return validateForm()")
+
+                    label Tên nhà
+                    .form-group.d-flex
+                        input#check-1.form-control(type="text", name="name", value= seeds.name)
+                        label#error-1.lable-error
+
+                    label Kiểu nhà
+                    .form-group
+                        input#types.form-control(list="datalist",name="type", value= seeds.type)
+                        datalist#datalist
+                            each item in types
+                                option= item.name
+                    label Diện tích
+                    .form-group.d-flex
+                        input#check-3.form-control(type="text", name="area", value= seeds.area)
+                        label#error-3.lable-error
+
+                    label Nội thất
+                    .form-group.d-flex
+                        input#check-4.form-control(type="text", name="furniture", value= seeds.furniture)
+                        label#error-4.lable-error
+
+                    label Thông tin nhà
+                    .form-group.d-flex
+                        input#check-5.form-control(type="text", name="information", value= seeds.information)
+                        label#error-5.lable-error
+
+                    label Giá
+                    .form-group.d-flex
+                        input#check-3.form-control(type="text", name="price", value= seeds.price)
+                        label#error-3.lable-error
+
+                    label Địa chỉ
+                    .form-group.d-flex
+                        input#check-3.form-control(type="text", name="address", value= seeds.address)
+                        label#error-3.lable-error
+
+                    label Chọn ảnh
+                    .form-group
+                        input#images.input-file(type="file", name='images')
+
+                    .form-group
+                        button.btn.btn-primary Update

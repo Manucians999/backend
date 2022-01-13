@@ -1,0 +1,51 @@
+extends ../admin/addproducts
+block create
+    .container-fluid.mt-4
+        .card.mb-4
+            .card-header
+                h3 Nhập thông tin nhà
+            .card-body
+                form(action="/admin/create/products" method="POST", enctype="multipart/form-data", onsubmit="return validateForm()")
+
+                    label Tên nhà
+                    .form-group.d-flex
+                        input#check-1.form-control(type="text", name="name")
+                        label#error-1.lable-error
+
+                    label Kiểu nhà
+                    .form-group
+                        input#types.form-control(list="datalist",name="type")
+                        datalist#datalist
+                            each item in types
+                                option= item.name
+                    label Diện tích
+                    .form-group.d-flex
+                        input#check-3.form-control(type="text", name="area")
+                        label#error-3.lable-error
+
+                    label Nội thất
+                    .form-group.d-flex
+                        input#check-4.form-control(type="text", name="furniture")
+                        label#error-4.lable-error
+
+                    label Thông tin nhà
+                    .form-group.d-flex
+                        input#check-5.form-control(type="text", name="information")
+                        label#error-5.lable-error
+
+                    label Giá
+                    .form-group.d-flex
+                        input#check-3.form-control(type="text", name="price")
+                        label#error-3.lable-error
+
+                    label Địa chỉ
+                    .form-group.d-flex
+                        input#check-3.form-control(type="text", name="address")
+                        label#error-3.lable-error
+
+                    label Chọn ảnh
+                    .form-group
+                        input.input-file(type="file", name='image')
+
+                    .form-group
+                        button.btn.btn-primary(type="submit", name="upload") Create
