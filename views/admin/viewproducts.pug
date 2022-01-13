@@ -3,19 +3,19 @@ block content
 
     main
         .container-fluid
-            h1.mt-4 Danh sách thông tin nhà
+            h1.mt-4 Danh sách sản phẩm
             ol.breadcrumb.mb-4
                 li.breadcrumb-item
                     a(href='/admin') Admin
-                li.breadcrumb-item.active List
+                li.breadcrumb-item.active Product
             .card.mb-4
                 .card-header
                     .row
                         .col-sm-9.col-md-10
                             i.fas.fa-table.mr-1
-                            span Bảng thông tin nhà
+                            span Danh sách sản phẩm
                         .col-sm-3.col-md-2
-                            a.btn.btn-primary(href="/admin/create/types") Thêm nhà
+                            a.btn.btn-primary(href="/admin/create/types") Thêm mới
                 .card-body
                     .table-responsive
                         table#dataTable.table.table-bordered(width='100%', cellspacing='0')
