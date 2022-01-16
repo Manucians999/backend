@@ -14,7 +14,7 @@ block content
                             i.fas.fa-table.mr-1
                             span Danh sách thương hiệu
                         .col-sm-9.col-md-9
-                            form(action="/admin/sizes/create" method="POST", enctype="multipart/form-data", onsubmit="return validateForm()")
+                            form(action="/admin/producers" method="POST", enctype="multipart/form-data", onsubmit="return validateForm()")
 
                                 .row 
                                     .col-md-9 
@@ -33,10 +33,10 @@ block content
                                     th Tên
                                     th Tác vụ
                             tbody
-                                //- each size, index in sizes
-                                //-     tr
-                                //-         td= index + 1
-                                //-         td= size.name
-                                //-         td
-                                //-             a(href="/admin/sizes/delete="+ size.id).btn.btn-danger Xóa
+                                each producer, index in producers
+                                    tr
+                                        td= index + 1
+                                        td= producer.name
+                                        td
+                                            a(href="/admin/producers/delete="+ producer.id).btn.btn-danger Xóa
                                     
