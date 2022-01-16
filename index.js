@@ -10,8 +10,8 @@ const productRouter = require("./routes/product.route");
 const adminRouter = require("./routes/admin.route");
 const authRouter = require("./routes/auth.route");
 const sizeRouter = require("./routes/admin/size.route");
+const producerRouter = require("./routes/admin/producer.route");
 const middleware = require("./middlewares/auths.middleware");
-const req = require("express/lib/request");
 
 const app = express();
 
@@ -47,6 +47,7 @@ app.use("/products", productRouter);
 // app.use("/admin", middleware.authLogin, adminRouter);
 app.use("/admin", adminRouter);
 app.use("/admin/sizes", sizeRouter);
+app.use("/admin/producers", producerRouter);
 app.use("/auth", authRouter);
 
 app.listen(PORT, () => {
