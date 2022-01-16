@@ -7,10 +7,11 @@ const fileUpload = require("express-fileupload");
 
 const homeRouter = require("./routes/home.route");
 const productRouter = require("./routes/product.route");
-const adminRouter = require("./routes/admin.route");
+const adminRouter = require("./routes/admin/index.route");
 const authRouter = require("./routes/auth.route");
 const sizeRouter = require("./routes/admin/size.route");
 const producerRouter = require("./routes/admin/producer.route");
+const productsRouter = require("./routes/admin/product.route");
 const colorRouter = require("./routes/admin/color.route");
 const middleware = require("./middlewares/auths.middleware");
 
@@ -43,13 +44,14 @@ mongoose
     console.log("Error", err);
   });
 
-app.use("/", homeRouter);
-app.use("/products", productRouter);
-// app.use("/admin", middleware.authLogin, adminRouter);
-app.use("/admin", adminRouter);
+app.use("/admin", middleware.authLogin, adminRouter);
 app.use("/admin/sizes", sizeRouter);
 app.use("/admin/colors", colorRouter);
 app.use("/admin/producers", producerRouter);
+app.use("/admin/products", productsRouter);
+
+app.use("/", homeRouter);
+app.use("/products", productRouter);
 app.use("/auth", authRouter);
 
 app.listen(PORT, () => {
