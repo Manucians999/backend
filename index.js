@@ -44,15 +44,15 @@ mongoose
     console.log("Error", err);
   });
 
-app.use("/admin", middleware.authLogin, adminRouter);
+app.use("/", homeRouter);
+app.use("/products", productRouter);
+app.use("/auth", authRouter);
+// app.use("/admin", middleware.authLogin, adminRouter);
+app.use("/admin", adminRouter);
 app.use("/admin/sizes", sizeRouter);
 app.use("/admin/colors", colorRouter);
 app.use("/admin/producers", producerRouter);
 app.use("/admin/products", productsRouter);
-
-app.use("/", homeRouter);
-app.use("/products", productRouter);
-app.use("/auth", authRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`);
