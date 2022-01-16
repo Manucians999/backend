@@ -1,4 +1,5 @@
 const slugify = require("slugify");
+const path = require("path");
 
 const Product = require("../../models/product.model");
 const Color = require("../../models/color.model");
@@ -26,22 +27,24 @@ const indexCreateProduct = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-  console.log("req", req.body);
-  let image = req.files.image;
-
-  let urlImage = 
-
+  let listImage = [];
+  const image = req.files.image;
   await image.mv(
-    path.resolve(__dirname, "../public/image", image.name),
+    path.resolve(__dirname, "../public/images", image.name),
     function (err) {
       if (err) console.log(err);
-      Product.create_product({ ...req.body, image: "/image/" + image.name });
-      res.redirect("/admin/views");
+      listImage.push(`/images/${image.name}`);
     }
   );
   const newProduct = new Product({
     name: req.body.name,
     slug: slugify(req.body.name.toLowerCase()),
+    price: Number(req.body.price),
+    size: req.body.size,
+    producer: req.body.producer,
+    color: req.body.color,
+    images: listImage,
+    description: req.body.description,
   });
   res.redirect("/admin/products/create");
 };
