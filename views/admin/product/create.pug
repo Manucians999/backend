@@ -14,13 +14,13 @@ block content
                             .form-group.d-flex
                                 input#check-1.form-control(type="text", name="name")
                                 label#error-1.lable-error
+                        
                         .col-md-6
                             label Thương hiệu
                             .form-group
-                                input#types.form-control(list="datalist1",name="producer")
-                                datalist#datalist1
+                                select.form-control
                                     each producer in producers
-                                        option= producer.name
+                                        option(value= producer._id)= producer.name
                     .row 
                         .col-md-6
                             label Giá

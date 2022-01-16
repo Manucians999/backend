@@ -30,22 +30,25 @@ const createProduct = async (req, res) => {
   let listImage = [];
   const image = req.files.image;
   await image.mv(
-    path.resolve(__dirname, "../public/images", image.name),
+    path.resolve(__dirname, "../../public/uploads", image.name),
     function (err) {
       if (err) console.log(err);
-      listImage.push(`/images/${image.name}`);
+      listImage.push({ url: `/uploads/${image.name}` });
+
+      const newProduct = new Product({
+        name: req.body.name,
+        slug: slugify(req.body.name.toLowerCase()),
+        price: Number(req.body.price),
+        size: req.body.size,
+        producer: req.body.producer,
+        color: req.body.color,
+        images: listImage,
+        description: req.body.description,
+      });
+
+      console.log("newProduct", newProduct);
     }
   );
-  const newProduct = new Product({
-    name: req.body.name,
-    slug: slugify(req.body.name.toLowerCase()),
-    price: Number(req.body.price),
-    size: req.body.size,
-    producer: req.body.producer,
-    color: req.body.color,
-    images: listImage,
-    description: req.body.description,
-  });
   res.redirect("/admin/products/create");
 };
 
