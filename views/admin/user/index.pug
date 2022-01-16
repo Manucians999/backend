@@ -1,4 +1,4 @@
-extends ../layouts/admin
+extends ../../layouts/admin
 block content
     main
         .container-fluid
@@ -28,12 +28,12 @@ block content
                                     th Email
                                     th Tác vụ
                             tbody
-                                each user in users
-                                    tr
-                                        td= user.username
-                                        td= user.fullname
-                                        td= user.address
-                                        td= user.phone
-                                        td= user.email
-                                        td
-                                            a(href="/admin/users/delete="+user.id).btn.btn-danger Xóa
+                                //- each user in users
+                                //-     tr
+                                //-         td= user.username
+                                //-         td= user.fullname
+                                //-         td= user.address
+                                //-         td= user.phone
+                                //-         td= user.email
+                                //-         td
+                                //-             a(href="/admin/users/delete="+user.id).btn.btn-danger Xóa
