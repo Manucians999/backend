@@ -18,6 +18,7 @@ const postRegister = async (req, res) => {
       message: "Email đã tồn tại",
       values: req.body,
     });
+    return;
   }
 
   const user = new User({
@@ -67,6 +68,7 @@ const postLogin = async (req, res) => {
         : "Email không tồn tại",
       values: req.body,
     });
+    return;
   }
 
   if (user.password !== md5(req.body.password)) {
@@ -75,37 +77,19 @@ const postLogin = async (req, res) => {
       message: "Mật khẩu không đúng",
       values: req.body,
     });
+    return;
   }
 
-  res.redirect("/auth/login");
-
-  // User.find({ username: req.body.username })
-  //   .then((user) => {
-  //     if (user.length > 0) {
-  //       if (user[0].username === "admin") {
-  //         if (user[0].password === md5(req.body.password)) {
-  //           res.cookie("ssaid", user[0]._id, {
-  //             signed: true,
-  //             expires: times,
-  //             httponly: false,
-  //           });
-  //           res.redirect("/admin");
-  //         }
-  //       }
-  //       if (user[0].password === md5(req.body.password)) {
-  //         res.cookie("ssid", user[0]._id, {
-  //           signed: true,
-  //           expires: times,
-  //           httponly: false,
-  //         });
-  //         res.redirect("/");
-  //       }
-  //     }
-  //     res.redirect("/auth/login");
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  res.cookie("ssid", user[0]._id, {
+    signed: true,
+    expires: times,
+    httponly: false,
+  });
+  if (user.role.slug === "admin" || user.role.slug === "superadmin") {
+    res.redirect("/admin");
+  } else {
+    res.redirect("/");
+  }
 };
 
 module.exports = { register, postRegister, login, postLogin };
