@@ -8,6 +8,10 @@ const userSchema = mongoose.Schema({
   address: String,
   phone: String,
   email: String,
+  role: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Role",
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
