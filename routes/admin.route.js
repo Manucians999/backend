@@ -1,8 +1,3 @@
-// const multer = require('multer');
-// const sharp = require('sharp');
-// const uuidv4  = require('uuid/v4');
-// const path = require('path');
-
 const express = require('express');
 
 const adminController = require('../controllers/admin.controller');

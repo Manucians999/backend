@@ -8,8 +8,16 @@ const productSchema = mongoose.Schema({
       ref: "Size",
     },
   ],
+  producer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Producer",
+  },
   price: Number,
-  image: String,
+  images: [
+    {
+      type: String,
+    },
+  ],
 });
 
 module.exports = mongoose.model("Product", productSchema);
