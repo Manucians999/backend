@@ -1,9 +1,11 @@
+require("dotenv").config();
+
 const express = require("express");
+const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const fileUpload = require("express-fileupload");
 
 const homeRouter = require("./routes/home.route");
 const productRouter = require("./routes/product.route");
@@ -19,7 +21,7 @@ const app = express();
 
 const PORT = process.env.PORT | 3000;
 
-app.use(cookieParser("Hi I am hung"));
+app.use(cookieParser("Cookie"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -29,14 +31,13 @@ app.set("views", "./views");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(fileUpload());
 
-const url =
-  "mongodb+srv://le-thinh_0210:T0h2i1n0h@cluster0.hajwu.mongodb.net/shoes?retryWrites=true&w=majority";
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 };
+
 mongoose
-  .connect(url, options)
+  .connect(process.env.MONGO_CONNECT_URL, options)
   .then(() => {
     console.log("Server connect successful");
   })
