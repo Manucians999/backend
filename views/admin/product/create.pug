@@ -4,9 +4,9 @@ block content
     .container-fluid.mt-4
         .card.mb-4
             .card-header
-                h3 Nhập thông tin nhà
+                h3 Nhập thông sản phẩm
             .card-body
-                form(action="/admin/create/products" method="POST", enctype="multipart/form-data", onsubmit="return validateForm()")
+                form(action="/admin/products/create" method="POST", enctype="multipart/form-data", onsubmit="return validateForm()")
 
                     label Tên nhà
                     .form-group.d-flex
