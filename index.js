@@ -37,12 +37,13 @@ mongoose
     console.log("Server connect successful");
   })
   .catch((err) => {
-    console.log(err, "error");
+    console.log("Error", err);
   });
 
 app.use("/", homeRouter);
 app.use("/products", productRouter);
-app.use("/admin", middleware.authLogin, adminRouter);
+// app.use("/admin", middleware.authLogin, adminRouter);
+app.use("/admin", adminRouter);
 app.use("/auth", authRouter);
 
 app.listen(PORT, () => {

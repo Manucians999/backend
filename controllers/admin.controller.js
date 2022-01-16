@@ -1,5 +1,5 @@
-const Product = require('../models/products.model');
-const Types = require('../models/types.model');
+const Product = require('../models/product.model');
+const Types = require('../models/producer.model');
 const News = require('../models/news.model');
 const Auths = require('../models/auth.model');
 const path = require('path');

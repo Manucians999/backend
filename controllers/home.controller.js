@@ -1,6 +1,6 @@
 const md5 = require('md5');
 
-const Product = require('../models/products.model');
+const Product = require('../models/product.model');
 const News = require('../models/news.model');
 const Auths = require('../models/auth.model');
 
