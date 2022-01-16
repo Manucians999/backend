@@ -46,7 +46,7 @@ app.use("/", homeRouter);
 app.use("/products", productRouter);
 // app.use("/admin", middleware.authLogin, adminRouter);
 app.use("/admin", adminRouter);
-app.use("/admin", sizeRouter);
+app.use("/admin/sizes", sizeRouter);
 app.use("/auth", authRouter);
 
 app.listen(PORT, () => {

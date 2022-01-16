@@ -6,15 +6,24 @@ block content
             ol.breadcrumb.mb-4
                 li.breadcrumb-item
                     a(href='/admin') Admin
-                li.breadcrumb-item.active size
+                li.breadcrumb-item.active Sizes
             .card.mb-4
                 .card-header
                     .row
-                        .col-sm-9.col-md-10
+                        .col-sm-3.col-md-3
                             i.fas.fa-table.mr-1
                             span Danh sách size
-                        .col-sm-3.col-md-2
-                            a.btn.btn-primary(href="/admin/sizes/create") Thêm mới
+                        .col-sm-9.col-md-9
+                            form(action="/admin/sizes/create" method="POST", enctype="multipart/form-data", onsubmit="return validateForm()")
+
+                                .row 
+                                    .col-md-9 
+                                        .form-group.d-flex
+                                            input#check-1.form-control(type="text", name="name", placeholder="Mời nhập size")
+                                            label#error-1.lable-error
+                                    .col-md-3
+                                        .form-group
+                                            button.btn.btn-primary(type="submit") Thêm mới
                 .card-body
                     .table-responsive
                         table#dataTable.table.table-bordered(width='100%', cellspacing='0')
@@ -24,16 +33,10 @@ block content
                                     th Size
                                     th Tác vụ
                             tbody
-                                //- each seed in seeds
-                                //-     tr
-                                //-         td= seed.name
-                                //-         td= seed.type
-                                //-         td= seed.furniture
-                                //-         td= seed.information
-                                //-         td= seed.price
-                                //-         td= seed.address
-                                //-         td
-                                //-             //- a.mb-2(href="/admin/views/id="+ seed.id).btn.btn-primary= seed.new? 'Mới': 'Cũ'
-                                //-             a(href="/admin/views/update="+ seed.id).btn.btn-success Sửa
-                                //-             a(href="/admin/views/delete="+ seed.id,).btn.btn-danger Xóa
+                                each size, index in sizes
+                                    tr
+                                        td= index + 1
+                                        td= size.name
+                                        td
+                                            a(href="/admin/sizes/delete="+ size.id).btn.btn-danger Xóa
                                     

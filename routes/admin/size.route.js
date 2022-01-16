@@ -1,9 +1,17 @@
 const express = require("express");
 
-const { getAllSize } = require("../../controllers/admin/size.controller");
+const {
+  getAllSize,
+  createSize,
+  deleteSize,
+} = require("../../controllers/admin/size.controller");
 
 const router = express.Router();
 
-router.get("/sizes", getAllSize);
+router.get("/", getAllSize);
+
+router.post("/create", createSize);
+
+router.get("/delete=:id", deleteSize);
 
 module.exports = router;
