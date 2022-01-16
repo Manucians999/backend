@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get("/", getAllSize);
 
-router.post("/create", createSize);
+router.post("/", createSize);
 
 router.get("/delete=:id", deleteSize);
 

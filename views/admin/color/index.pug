@@ -2,24 +2,24 @@ extends ../../layouts/admin
 block content
     main
         .container-fluid
-            h1.mt-4 Danh sách size
+            h1.mt-4 Danh sách màu sắc
             ol.breadcrumb.mb-4
                 li.breadcrumb-item
                     a(href='/admin') Admin
-                li.breadcrumb-item.active Sizes
+                li.breadcrumb-item.active Màu sắc
             .card.mb-4
                 .card-header
                     .row
                         .col-sm-3.col-md-3
                             i.fas.fa-table.mr-1
-                            span Danh sách size
+                            span Danh sách màu sắc
                         .col-sm-9.col-md-9
-                            form(action="/admin/sizes" method="POST", enctype="multipart/form-data", onsubmit="return validateForm()")
+                            form(action="/admin/colors" method="POST", enctype="multipart/form-data", onsubmit="return validateForm()")
 
                                 .row 
                                     .col-md-9 
                                         .form-group.d-flex
-                                            input#check-1.form-control(type="text", name="name", placeholder="Mời nhập size")
+                                            input#check-1.form-control(type="text", name="name", placeholder="Mời nhập màu sắc")
                                             label#error-1.lable-error
                                     .col-md-3
                                         .form-group
@@ -30,13 +30,16 @@ block content
                             thead
                                 tr
                                     th STT
-                                    th Size
+                                    th Màu sắc
+                                    th Trạng thái
                                     th Tác vụ
                             tbody
-                                each size, index in sizes
+                                each color, index in colors
                                     tr
                                         td= index + 1
-                                        td= size.name
+                                        td= color.name
+                                        td 
+                                            a(href="/admin/colors/delete="+ color.id).btn.btn Xóa
                                         td
-                                            a(href="/admin/sizes/delete="+ size.id).btn.btn-danger Xóa
+                                            a(href="/admin/colors/delete="+ color.id).btn.btn-danger Xóa
                                     
