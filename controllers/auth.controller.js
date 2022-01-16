@@ -1,5 +1,5 @@
 const md5 = require('md5');
-const Auths = require('../models/auth.model');
+const Auths = require('../models/user.model');
 
 module.exports = {
   login: async (req, res) => {

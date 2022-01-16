@@ -2,7 +2,7 @@ const md5 = require('md5');
 
 const Product = require('../models/product.model');
 const News = require('../models/news.model');
-const Auths = require('../models/auth.model');
+const Auths = require('../models/user.model');
 
 module.exports = {
   index: async (req, res) => {
