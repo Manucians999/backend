@@ -15,7 +15,7 @@ const sizeRouter = require("./routes/admin/size.route");
 const producerRouter = require("./routes/admin/producer.route");
 const productsRouter = require("./routes/admin/product.route");
 const colorRouter = require("./routes/admin/color.route");
-const middleware = require("./middlewares/auths.middleware");
+const { authenticate } = require("./middlewares/auths.middleware");
 
 const app = express();
 
@@ -48,12 +48,11 @@ mongoose
 // app.use("/", homeRouter);
 // app.use("/products", productRouter);
 app.use("/auth", authRouter);
-// app.use("/admin", middleware.authLogin, adminRouter);
-app.use("/admin", adminRouter);
-app.use("/admin/sizes", sizeRouter);
-app.use("/admin/colors", colorRouter);
-app.use("/admin/producers", producerRouter);
-app.use("/admin/products", productsRouter);
+app.use("/admin", authenticate, adminRouter);
+app.use("/admin/sizes", authenticate, sizeRouter);
+app.use("/admin/colors",authenticate, colorRouter);
+app.use("/admin/producers",authenticate, producerRouter);
+app.use("/admin/products",authenticate, productsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`);

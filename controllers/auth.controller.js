@@ -9,7 +9,7 @@ const register = async (req, res) => {
 };
 
 const postRegister = async (req, res) => {
-  const roleUser = await Role.findOne({ slug: "user" });
+  const roleUser = await Role.findOne({ slug: "admin" });
   const email = await User.findOne({ email: req.body.email });
 
   if (email) {
@@ -36,10 +36,14 @@ const postRegister = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  if (!req.signedCookies.ssid) {
+  if (!req.signedCookies.ssid || !req.signedCookies.ssaid) {
     res.render("auth/login");
   } else {
-    res.clearCookie("ssid");
+    if (req.signedCookies.ssaid) {
+      res.clearCookie("ssaid");
+    } else {
+      res.clearCookie("ssid");
+    }
     res.render("auth/login");
   }
 };
@@ -55,7 +59,7 @@ const postLogin = async (req, res) => {
     objFind = { username: req.body.username };
   }
 
-  const user = await User.find(objFind).populate({
+  const user = await User.findOne(objFind).populate({
     path: "role",
     select: "_id name slug",
   });
@@ -80,14 +84,19 @@ const postLogin = async (req, res) => {
     return;
   }
 
-  res.cookie("ssid", user[0]._id, {
-    signed: true,
-    expires: times,
-    httponly: false,
-  });
   if (user.role.slug === "admin" || user.role.slug === "superadmin") {
+    res.cookie("ssaid", user._id, {
+      signed: true,
+      expires: times,
+      httponly: false,
+    });
     res.redirect("/admin");
   } else {
+    res.cookie("ssid", user._id, {
+      signed: true,
+      expires: times,
+      httponly: false,
+    });
     res.redirect("/");
   }
 };
