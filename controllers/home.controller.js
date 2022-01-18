@@ -6,7 +6,7 @@ const User = require('../models/user.model');
 module.exports = {
   index: async (req, res) => {
     res.render('home/index', {
-      data: await Product.getAll(),
+      data: await Product.find(),
       session: req.signedCookies.ssid,
       user: await User.find({id: req.signedCookies.ssid}),
       title: 'Home Page - Website about the House'

@@ -20,7 +20,6 @@ const getAllProduct = async (req, res) => {
       path: "color",
       select: "_id name",
     });
-  console.log("product", products.images);
   res.render("admin/product/index", {
     products,
     title: "This is product page",

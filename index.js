@@ -45,8 +45,8 @@ mongoose
     console.log("Error", err);
   });
 
-// app.use("/", homeRouter);
-// app.use("/products", productRouter);
+app.use("/", homeRouter);
+app.use("/products", productRouter);
 app.use("/auth", authRouter);
 app.use("/admin", authenticate, adminRouter);
 app.use("/admin/sizes", authenticate, sizeRouter);

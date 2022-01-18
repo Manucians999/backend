@@ -28,7 +28,7 @@ block content
                                     th Giá
                                     th Màu chính
                                     th Tác vụ
-                            tbody
+                            //- tbody
                                 if(products)
                                     each product, index in products
                                         tr
@@ -38,7 +38,7 @@ block content
                                             td= product.name
                                             td= product.producer.name
                                             td= product.price
-                                            td= product.color[0].name
+                                            td= product.color[0]?.name
                                             td
                                                 //- a.mb-2(href="/admin/views/id="+ seed.id).btn.btn-primary= seed.new? 'Mới': 'Cũ'
                                                 a(href="/admin/views/update="+ product.id).btn.btn-success Sửa
