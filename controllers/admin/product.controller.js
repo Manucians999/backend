@@ -20,7 +20,6 @@ const getAllProduct = async (req, res) => {
       path: "color",
       select: "_id name",
     });
-  console.log("product", products.images);
   res.render("admin/product/index", {
     products,
     title: "This is product page",
@@ -47,7 +46,6 @@ const createProduct = async (req, res) => {
     async function (err) {
       if (err) console.log(err);
       listImage.push({ url: `/uploads/${image.name}` });
-      console.log("req.body.size", req.body.size);
 
       const newProduct = new Product({
         name: req.body.name,
