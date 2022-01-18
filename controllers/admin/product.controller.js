@@ -20,7 +20,6 @@ const getAllProduct = async (req, res) => {
       path: "color",
       select: "_id name",
     });
-  console.log("product", products.images);
   res.render("admin/product/index", {
     products,
     title: "This is product page",
@@ -64,6 +63,41 @@ const createProduct = async (req, res) => {
   res.redirect("/admin/products");
 };
 
+const indexUpdateProduct = async (req, res) => {
+  const product = await Product.findOne({ _id: req.params.id })
+    .populate({
+      path: "size",
+      select: "_id name",
+    })
+    .populate({
+      path: "producer",
+      select: "_id name",
+    })
+    .populate({
+      path: "color",
+      select: "_id name",
+    });
+  res.render("admin/product/update", {
+    product,
+    title: "This update product page",
+  });
+};
+
+const updateProduct = async (req, res) => {
+  const newUpdateProduct = new Product({
+    name: req.body.name,
+    slug: slugify(req.body.name.toLowerCase()),
+    price: Number(req.body.price),
+    size: req.body.size,
+    producer: req.body.producer,
+    color: req.body.color,
+    images: listImage,
+    description: req.body.description,
+  });
+  await Product.updateOne({ _id: req.params.id }, newUpdateProduct);
+  res.redirect("/admin/products");
+};
+
 const deleteProduct = async (req, res) => {
   await Product.deleteOne({ _id: req.params.id });
   res.redirect("/admin/products");
@@ -73,5 +107,7 @@ module.exports = {
   getAllProduct,
   indexCreateProduct,
   createProduct,
+  indexUpdateProduct,
+  updateProduct,
   deleteProduct,
 };
