@@ -36,16 +36,12 @@ const postRegister = async (req, res) => {
 };
 
 const login = async (req, res) => {
+  
   if (!req.signedCookies.ssid || !req.signedCookies.ssaid) {
+    res.clearCookie("ssaid");
+    res.clearCookie("ssid");
     res.render("auth/login");
-  } else {
-    if (req.signedCookies.ssaid) {
-      res.clearCookie("ssaid");
-    } else {
-      res.clearCookie("ssid");
-    }
-    res.render("auth/login");
-  }
+  } 
 };
 
 const postLogin = async (req, res) => {

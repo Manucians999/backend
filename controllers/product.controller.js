@@ -3,8 +3,8 @@ const Product = require('../models/product.model');
 
 module.exports = {
   get_product_by_id: async (req, res)=>{
-    const type = await Product.getAll();
-    const product = await Product.get_product(req.params.id);
+    const type = await Product.find();
+    const product = await Product.findById(req.params.id);
     res.render('product/detail',{
       types: type,
       seed: product,
@@ -15,7 +15,7 @@ module.exports = {
   }, 
   
   index: async (req, res) => {
-    const product = await Product.getAll();
+    const product = await Product.find();
     res.render('product/index', {
       data: product,
       title: 'Products Page - Website about the House'
@@ -23,7 +23,7 @@ module.exports = {
   },
 
   loadProducts: async (req, res) => {
-    const product = await Product.getAll();
+    const product = await Product.find();
     res.render('product/load', {
       data: product,
       title: 'Products Page - Website about the House'
