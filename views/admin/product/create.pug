@@ -18,7 +18,7 @@ block content
                         .col-md-6
                             label Thương hiệu
                             .form-group
-                                select.form-control
+                                select.form-control(name="producer")
                                     each producer in producers
                                         option(value= producer._id)= producer.name
                     .row 
@@ -31,19 +31,17 @@ block content
                         .col-md-6 
                             label Màu sắc
                             .form-group.d-flex
-                                input#types.form-control(list="datalist2", name="color")
-                                datalist#datalist2
+                                select.form-control(name="color")
                                     each color in colors
-                                        option= color.name
+                                        option(value= color._id)= color.name
 
                     .row
                         .col-md-12
                             label Size
                             .form-group.d-flex
-                                input#types.form-control(list="datalist3", name="size")
-                                datalist#datalist3
+                                select.form-control(name="size")
                                     each size in sizes
-                                        option= size.name
+                                        option(value= size._id)= size.name
 
                     label Mô tả sản phẩm
                     .form-group.d-flex
