@@ -7,7 +7,20 @@ const Producer = require("../../models/producer.model");
 const Size = require("../../models/size.model");
 
 const getAllProduct = async (req, res) => {
-  const products = await Product.find();
+  const products = await Product.find()
+    .populate({
+      path: "size",
+      select: "_id name",
+    })
+    .populate({
+      path: "producer",
+      select: "_id name",
+    })
+    .populate({
+      path: "color",
+      select: "_id name",
+    });
+  console.log("product", products.images);
   res.render("admin/product/index", {
     products,
     title: "This is product page",
@@ -31,7 +44,7 @@ const createProduct = async (req, res) => {
   const image = req.files.image;
   await image.mv(
     path.resolve(__dirname, "../../public/uploads", image.name),
-    function (err) {
+    async function (err) {
       if (err) console.log(err);
       listImage.push({ url: `/uploads/${image.name}` });
       console.log("req.body.size", req.body.size);
@@ -46,8 +59,7 @@ const createProduct = async (req, res) => {
         images: listImage,
         description: req.body.description,
       });
-
-      console.log("newProduct", newProduct);
+      await newProduct.save();
     }
   );
   res.redirect("/admin/products");
