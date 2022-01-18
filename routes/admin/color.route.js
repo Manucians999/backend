@@ -9,12 +9,16 @@ const {
 
 const router = express.Router();
 
+
+
 router.get("/", getAllColor);
 
 router.post("/", createColor);
 
+router.get("/delete=:id", deleteColor);
+
 router.get("/:id", updateStatusColor);
 
-router.get("/delete=:id", deleteColor);
+
 
 module.exports = router;

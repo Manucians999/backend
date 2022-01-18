@@ -20,12 +20,14 @@ const createColor = async (req, res) => {
 };
 
 const updateStatusColor = async (req, res) => {
-  await Color.updateOne({ _id: req.params.id }, { status: 0 });
+  const color = await Color.find({_id: req.params.id});
+  const newColor = { ...color[0]._doc, status: color[0].status === 1 ? 0 : 1 };
+  await Color.updateOne({ _id: req.params.id }, newColor);
   res.redirect("/admin/colors");
 };
 
 const deleteColor = async (req, res) => {
-  await Color.deleteOne({ id: req.body.id });
+  await Color.deleteOne({ _id: req.params.id });
   res.redirect("/admin/colors");
 };
 

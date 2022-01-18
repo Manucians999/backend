@@ -39,7 +39,7 @@ block content
                                         td= index + 1
                                         td= color.name
                                         td 
-                                            a(href="/admin/colors/delete="+ color.id).btn.btn Xóa
+                                            a(href="/admin/colors/"+color.id).btn.btn=color.status === 1 ? "Active" : "Deactive"
                                         td
-                                            a(href="/admin/colors/delete="+ color.id).btn.btn-danger Xóa
+                                            a(href="/admin/colors/delete="+color.id).btn.btn-danger Xóa
                                     
