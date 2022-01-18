@@ -34,6 +34,7 @@ const createProduct = async (req, res) => {
     function (err) {
       if (err) console.log(err);
       listImage.push({ url: `/uploads/${image.name}` });
+      console.log("req.body.size", req.body.size);
 
       const newProduct = new Product({
         name: req.body.name,
@@ -49,7 +50,7 @@ const createProduct = async (req, res) => {
       console.log("newProduct", newProduct);
     }
   );
-  res.redirect("/admin/products/create");
+  res.redirect("/admin/products");
 };
 
 const deleteProduct = async (req, res) => {
