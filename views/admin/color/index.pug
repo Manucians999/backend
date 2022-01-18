@@ -1,0 +1,45 @@
+extends ../../layouts/admin
+block content
+    main
+        .container-fluid
+            h1.mt-4 Danh sách màu sắc
+            ol.breadcrumb.mb-4
+                li.breadcrumb-item
+                    a(href='/admin') Admin
+                li.breadcrumb-item.active Màu sắc
+            .card.mb-4
+                .card-header
+                    .row
+                        .col-sm-3.col-md-3
+                            i.fas.fa-table.mr-1
+                            span Danh sách màu sắc
+                        .col-sm-9.col-md-9
+                            form(action="/admin/colors" method="POST", enctype="multipart/form-data", onsubmit="return validateForm()")
+
+                                .row 
+                                    .col-md-9 
+                                        .form-group.d-flex
+                                            input#check-1.form-control(type="text", name="name", placeholder="Mời nhập màu sắc")
+                                            label#error-1.lable-error
+                                    .col-md-3
+                                        .form-group
+                                            button.btn.btn-primary(type="submit") Thêm mới
+                .card-body
+                    .table-responsive
+                        table#dataTable.table.table-bordered(width='100%', cellspacing='0')
+                            thead
+                                tr
+                                    th STT
+                                    th Màu sắc
+                                    th Trạng thái
+                                    th Tác vụ
+                            tbody
+                                each color, index in colors
+                                    tr
+                                        td= index + 1
+                                        td= color.name
+                                        td 
+                                            a(href="/admin/colors/"+color.id).btn.btn=color.status === 1 ? "Active" : "Deactive"
+                                        td
+                                            a(href="/admin/colors/delete="+color.id).btn.btn-danger Xóa
+                                    

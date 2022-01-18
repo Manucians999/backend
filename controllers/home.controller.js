@@ -1,15 +1,14 @@
 const md5 = require('md5');
 
-const Product = require('../models/products.model');
-const News = require('../models/news.model');
-const Auths = require('../models/auth.model');
+const Product = require('../models/product.model');
+const User = require('../models/user.model');
 
 module.exports = {
   index: async (req, res) => {
     res.render('home/index', {
       data: await Product.getAll(),
       session: req.signedCookies.ssid,
-      user: await Auths.find({id: req.signedCookies.ssid}),
+      user: await User.find({id: req.signedCookies.ssid}),
       title: 'Home Page - Website about the House'
     })
   },
@@ -36,7 +35,7 @@ module.exports = {
     });
   },
   postRegister: (req, res) => {
-    Auths.create(
+    User.create(
       {
         username: req.body.username,
         fullname: req.body.fullname,
@@ -51,12 +50,4 @@ module.exports = {
       console.log(err);
     })
   },
-
-  news: async (req, res) => {
-    const product = await News.getAll();
-    res.render('news/list', {
-      news: product,
-      title: 'News Page - Website about the House'
-    })
-  }
 }

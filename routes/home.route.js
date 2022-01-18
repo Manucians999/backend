@@ -12,8 +12,6 @@ router.get('/logout', homeController.logout);
 
 router.get('/register', homeController.register);
 
-router.get('/news', homeController.news);
-
 router.post('/register', homeController.postRegister);
 
 module.exports = router;

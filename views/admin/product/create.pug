@@ -1,0 +1,58 @@
+extends ../../layouts/admin
+block content
+
+    .container-fluid.mt-4
+        .card.mb-4
+            .card-header
+                h3 Nhập thông sản phẩm
+            .card-body
+                form(action="/admin/products/create" method="POST", enctype="multipart/form-data", onsubmit="return validateForm()")
+
+                    .row
+                        .col-md-6
+                            label Tên sản phẩm
+                            .form-group.d-flex
+                                input#check-1.form-control(type="text", name="name")
+                                label#error-1.lable-error
+                        
+                        .col-md-6
+                            label Thương hiệu
+                            .form-group
+                                select.form-control
+                                    each producer in producers
+                                        option(value= producer._id)= producer.name
+                    .row 
+                        .col-md-6
+                            label Giá
+                            .form-group.d-flex
+                                input#check-3.form-control(type="text", name="price")
+                                label#error-3.lable-error
+
+                        .col-md-6 
+                            label Màu sắc
+                            .form-group.d-flex
+                                input#types.form-control(list="datalist2", name="color")
+                                datalist#datalist2
+                                    each color in colors
+                                        option= color.name
+
+                    .row
+                        .col-md-12
+                            label Size
+                            .form-group.d-flex
+                                input#types.form-control(list="datalist3", name="size")
+                                datalist#datalist3
+                                    each size in sizes
+                                        option= size.name
+
+                    label Mô tả sản phẩm
+                    .form-group.d-flex
+                        input#check-3.form-control(type="text", name="description")
+                        label#error-3.lable-error
+
+                    label Chọn ảnh
+                    .form-group
+                        input.input-file(type="file", name='image')
+
+                    .form-group
+                        button.btn.btn-primary(type="submit", name="upload") Thêm mới
