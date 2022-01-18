@@ -64,7 +64,10 @@ const createProduct = async (req, res) => {
 };
 
 const indexUpdateProduct = async (req, res) => {
-  const product = await Product.findOne({ _id: req.params.id })
+  const colors = await Color.find();
+  const producers = await Producer.find();
+  const sizes = await Size.find();
+  const product = await Product.findOne({ slug: req.params.slug })
     .populate({
       path: "size",
       select: "_id name",
@@ -79,27 +82,40 @@ const indexUpdateProduct = async (req, res) => {
     });
   res.render("admin/product/update", {
     product,
+    colors,
+    producers,
+    sizes,
     title: "This update product page",
   });
 };
 
 const updateProduct = async (req, res) => {
-  const newUpdateProduct = new Product({
-    name: req.body.name,
-    slug: slugify(req.body.name.toLowerCase()),
-    price: Number(req.body.price),
-    size: req.body.size,
-    producer: req.body.producer,
-    color: req.body.color,
-    images: listImage,
-    description: req.body.description,
-  });
-  await Product.updateOne({ _id: req.params.id }, newUpdateProduct);
+  let listImage = [];
+  const image = req.files.image;
+  await image.mv(
+    path.resolve(__dirname, "../../public/uploads", image.name),
+    async function (err) {
+      if (err) console.log(err);
+      listImage.push({ url: `/uploads/${image.name}` });
+
+      const newProduct = new Product({
+        name: req.body.name,
+        slug: slugify(req.body.name.toLowerCase()),
+        price: Number(req.body.price),
+        size: req.body.size,
+        producer: req.body.producer,
+        color: req.body.color,
+        images: listImage,
+        description: req.body.description,
+      });
+      await Product.updateOne({ slug: req.params.slug }, newProduct);
+    }
+  );
   res.redirect("/admin/products");
 };
 
 const deleteProduct = async (req, res) => {
-  await Product.deleteOne({ _id: req.params.id });
+  await Product.deleteOne({ slug: req.params.slug });
   res.redirect("/admin/products");
 };
 
