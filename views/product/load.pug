@@ -4,18 +4,12 @@ block load
         each item in data
             .col-md-6.col-lg-4.ftco-animate
                 .product
-                    if(item.image === '')
+                    if(item.images[0].url === '')
                         a.img-prod(href='/products/id='+item.id)
-                            img.img-fluid(src=item.image, alt='Colorlib Template')
-                            if(item.new === true)
-                                span.status New
-                            .overlay
+                            img.img-fluid(src=item.images[0].url, alt='Colorlib Template')
                     else
                         a.img-prod(href='/products/id='+item.id)
-                            img.img-fluid(src= item.image, alt='Colorlib Template')
-                            if(item.new === true)
-                                span.status New
-                            .overlay
+                            img.img-fluid(src= item.images[0].url, alt='Colorlib Template')
                     .text.py-3.pb-4.px-3.text-center
                         h3
                             a(href='#')= item.name
