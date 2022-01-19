@@ -31,8 +31,9 @@ html(lang="en")
         .limiter
             .container-login100
                 .wrap-login100
+                    .login100-more(style="background-image: url('/image/center.jpg');")
                     form.login100-form.validate-form(method="POST")
-                        span.login100-form-title.p-b-43 Đăng ký
+                        span.login100-form-title.p-b-10 Đăng ký
                         .wrap-input100.validate-input(data-validate='Vui lòng nhập email')
                             input.input100(type='text', name='email', value=values?values.email:"")
                             span.focus-input100
@@ -58,8 +59,8 @@ html(lang="en")
                             if(message)
                                 span(style="color: red")= message
                             button.login100-form-btn Đăng ký
-                        .text-center.p-t-46.p-b-20
-                            span.txt2 hoặc đăng ký với
+                        .text-center.p-t-46.p-b-10
+                            a.txt1(href='/auth/login') Đăng nhập
                         .login100-form-social.flex-c-m
                             a.login100-form-social-item.flex-c-m.bg2.m-r-5(href='/auth/login')
                                 i.fa.fa-arrow-left(aria-hidden='true')
@@ -67,7 +68,7 @@ html(lang="en")
                                 i.fa.fa-facebook-f(aria-hidden='true')
                             a.login100-form-social-item.flex-c-m.bg2.m-r-5(href='#')
                                 i.fa.fa-twitter(aria-hidden='true')
-                    .login100-more(style="background-image: url('/login/images/banner.jpg');")
+                    
         // ===============================================================================================
         script(src='/login/vendor/jquery/jquery-3.2.1.min.js')
         // ===============================================================================================

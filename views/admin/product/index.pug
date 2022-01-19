@@ -30,7 +30,7 @@ block content
                                     th Màu chính
                                     th Tác vụ
                             tbody
-                                if(products)
+                                if(products )
                                     each product, index in products
                                         tr
                                             td= index + 1
@@ -38,9 +38,9 @@ block content
                                                 img(src= product.images[0].url, style="width: 100px; height: 100px")
                                             td= product.name
                                             td= product.producer.name
-                                            td= product.size[0].name
+                                            td= product.size.name
                                             td= product.price
-                                            td= product.color[0].name
+                                            td= product.color.name
                                             td
                                                 //- a.mb-2(href="/admin/views/id="+ seed.id).btn.btn-primary= seed.new? 'Mới': 'Cũ'
                                                 a(href="/admin/products/update/"+ product.slug).btn.btn-success Sửa
