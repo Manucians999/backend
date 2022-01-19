@@ -15,6 +15,7 @@ const sizeRouter = require("./routes/admin/size.route");
 const producerRouter = require("./routes/admin/producer.route");
 const productsRouter = require("./routes/admin/product.route");
 const colorRouter = require("./routes/admin/color.route");
+const userRouter = require("./routes/admin/user.route");
 const { authenticate } = require("./middlewares/auths.middleware");
 
 const app = express();
@@ -50,9 +51,10 @@ app.use("/products", productRouter);
 app.use("/auth", authRouter);
 app.use("/admin", authenticate, adminRouter);
 app.use("/admin/sizes", authenticate, sizeRouter);
-app.use("/admin/colors",authenticate, colorRouter);
-app.use("/admin/producers",authenticate, producerRouter);
-app.use("/admin/products",authenticate, productsRouter);
+app.use("/admin/colors", authenticate, colorRouter);
+app.use("/admin/producers", authenticate, producerRouter);
+app.use("/admin/products", authenticate, productsRouter);
+app.use("/admin/users", authenticate, userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`);
