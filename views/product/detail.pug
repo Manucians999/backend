@@ -30,26 +30,26 @@ block content
     .container
       .row
         .col-lg-6.mb-5.ftco-animate
-          a.image-popup(href=seed.image)
-            img.img-fluid(src=seed.image, alt='Colorlib Template')
+          a.image-popup(href=seed.images[0].url)
+            img.img-fluid(src=seed.images[0].url, alt='Colorlib Template')
         .col-lg-6.product-details.pl-md-5.ftco-animate
           h3= seed.name
           .rating.f
             p.text-left
               h5
+                span Màu sắc
+              p.text-left.ml-2(style="text-align: justify")=seed.color
+              h5
+                span Kích thước
+              p.text-left.ml-2(style="text-align: justify")= seed.size
+              h5
                 span Giá
-              p.text-left.ml-2(style="text-align: justify")=seed.price+'VNĐ'
-              h5
-                span Diện tích
-              p.text-left.ml-2(style="text-align: justify")= seed.area + 'm2'
-              h5
-                span Địa chỉ
-              p.text-left.ml-2(style="text-align: justify")= seed.address
+              p.text-left.ml-2(style="text-align: justify")= seed.price
         .col-lg-12.product-details.pl-md-5.ftco-animate 
             h5
               span Thông tin mô tả
             p
-              p(style="text-align: justify")= seed.information
+              p(style="text-align: justify")= seed.description
 
   section.ftco-section
         .container
@@ -63,7 +63,7 @@ block content
                     .col-md-6.col-lg-3.ftco-animate
                         .product
                             a.img-prod(href='#')
-                                img.img-fluid(src=`${item.image}`, alt='Colorlib Template')
+                                img.img-fluid(src=`${item.images[0].url}`, alt='Colorlib Template')
                                 span.status New
                                 .overlay
                             .text.py-3.pb-4.px-3.text-center

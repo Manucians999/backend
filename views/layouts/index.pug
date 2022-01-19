@@ -45,15 +45,12 @@ html(lang="en")
                             .col-md-5.pr-4.d-flex.topper.align-items-center.text-lg-right
                                 if(session)
                                     span.text
-                                        span Chào, 
-                                            span= user.username
-                                        span &nbsp;/&nbsp;
                                         span
                                         a(href="/logout", style="color: #fff") Thoát
                                 else
                                     span.text
                                         span
-                                            a(href="/register", style="color: #fff") Đăng ký
+                                            a.txt1(href='/auth/register',style="color: #fff") Đăng ký
                                         span &nbsp;/&nbsp;
                                         span
                                         a(href="/auth/login", style="color: #fff") Đăng nhập

@@ -9,7 +9,7 @@ const register = async (req, res) => {
 };
 
 const postRegister = async (req, res) => {
-  const roleUser = await Role.findOne({ slug: "admin" });
+  const roleUser = await Role.findOne({ slug: "user" });
   const email = await User.findOne({ email: req.body.email });
 
   if (email) {
@@ -36,17 +36,14 @@ const postRegister = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  
   if (!req.signedCookies.ssid || !req.signedCookies.ssaid) {
     res.clearCookie("ssaid");
     res.clearCookie("ssid");
     res.render("auth/login");
-  } 
+  }
 };
 
 const postLogin = async (req, res) => {
-  const times = new Date(Date.now() + 60 * 60 * 1000);
-
   let objFind = {};
   const checkEmail = req.body.username.split("@")[1];
   if (checkEmail) {
@@ -80,17 +77,19 @@ const postLogin = async (req, res) => {
     return;
   }
 
-  if (user.role.slug === "admin" || user.role.slug === "superadmin") {
+  console.log("user.role.slug", user.role);
+
+  if (user.role.slug === "admin") {
     res.cookie("ssaid", user._id, {
       signed: true,
-      expires: times,
+      expiresIn: "120ms",
       httponly: false,
     });
     res.redirect("/admin");
   } else {
     res.cookie("ssid", user._id, {
       signed: true,
-      expires: times,
+      expiresIn: "120ms",
       httponly: false,
     });
     res.redirect("/");
