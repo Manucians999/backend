@@ -35,6 +35,5 @@ module.exports = {
       data: product,
       title: "Products Page",
     });
-    console.log(product);
   },
 };

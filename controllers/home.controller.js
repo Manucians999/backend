@@ -6,7 +6,6 @@ const User = require("../models/user.model");
 module.exports = {
   index: async (req, res) => {
     const data = await Product.find();
-    console.log(data);
     res.render("home/index", {
       data,
       session: req.signedCookies.ssid,

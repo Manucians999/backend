@@ -27,12 +27,11 @@ const getAllProduct = async (req, res) => {
 };
 
 const indexCreateProduct = async (req, res) => {
-  let colors = await Color.find();
+  const colors = await Color.find();
   const producers = await Producer.find();
   const sizes = await Size.find();
-  colors = colors.filter(c => c.status>0)
   res.render("admin/product/create", {
-    colors,
+    colors: colors.filter((c) => c.status > 0),
     producers,
     sizes,
     title: "This is create product page",
@@ -56,7 +55,6 @@ const createProduct = async (req, res) => {
         description: req.body.description,
       });
       await newProduct.save();
-      
     }
   );
   res.redirect("/admin/products");
@@ -107,7 +105,6 @@ const updateProduct = async (req, res) => {
       };
       await Product.updateOne({ slug: req.params.slug }, newProduct);
     }
-    
   );
   res.redirect("/admin/products");
 };
