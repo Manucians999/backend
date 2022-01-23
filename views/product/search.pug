@@ -1,0 +1,26 @@
+extends ../product/index
+block load
+    .row
+        each item in data
+            .col-md-6.col-lg-4.ftco-animate
+                .product
+                    a.img-prod(href='/products/'+item.slug)
+                        img.img-fluid(src="", alt='Colorlib Template')
+                    .text.py-3.pb-4.px-3.text-center
+                        h3
+                            a(href='#')= item.name
+                        .d-flex
+                            .pricing
+                                p.price
+                                    span.price-sale Chi tiết
+                            .bottom-area.d-flex.px-3
+                                .m-auto.d-flex
+                                    a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='/product/'+item.slug)
+                                        span
+                                            i.ion-ios-menu
+                                    a.heart.d-flex.justify-content-center.align-items-center(href='/product/like='+item.id)
+                                        span
+                                            i.ion-ios-heart
+        else
+            h2 Khong tim thay san pham
+

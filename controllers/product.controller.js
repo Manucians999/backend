@@ -54,4 +54,26 @@ const loadProducts = async (req, res) => {
   });
 };
 
-module.exports = { getProductBySlug, indexProduct, loadProducts };
+const search = async (req, res) => {
+  const producers = await Producer.find();
+  const product = await Product.find()
+    .populate({
+      path: "size",
+      select: "_id name",
+    })
+    .populate({
+      path: "producer",
+      select: "_id name",
+    })
+    .populate({
+      path: "color",
+      select: "_id name",
+    });
+  res.render("product/search", {
+    data: product,
+    producers,
+    title: "Search Page",
+  });
+};
+
+module.exports = { getProductBySlug, indexProduct, loadProducts, search };
