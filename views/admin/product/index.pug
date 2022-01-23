@@ -35,14 +35,14 @@ block content
                                         tr
                                             td= index + 1
                                             td
-                                                img(src= product.images[0].url, style="width: 100px; height: 100px")
+                                                img(src= product.images, style="width: 100px; height: 100px")
                                             td= product.name
                                             td= product.producer.name
                                             td= product.size.name
                                             td= product.price
                                             td= product.color.name
                                             td
-                                                //- a.mb-2(href="/admin/views/id="+ seed.id).btn.btn-primary= seed.new? 'Mới': 'Cũ'
+                                               
                                                 a(href="/admin/products/update/"+ product.slug).btn.btn-success Sửa
                                                 a(href="/admin/products/delete/"+ product.slug).btn.btn-danger Xóa
                                 else

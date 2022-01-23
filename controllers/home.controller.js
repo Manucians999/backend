@@ -5,17 +5,12 @@ const User = require("../models/user.model");
 
 module.exports = {
   index: async (req, res) => {
+    const data = await Product.find();
+    console.log(data);
     res.render("home/index", {
-      data: await Product.find(),
+      data,
       session: req.signedCookies.ssid,
-      user: await User.find({ _id: req.params.id }),
-      title: "Home Page - Website about the House",
-    });
-  },
-
-  about: (req, res) => {
-    res.render("home/about", {
-      title: "About Page - Website about the House",
+      title: "Home Page ",
     });
   },
 
@@ -27,27 +22,5 @@ module.exports = {
       res.clearCookie("ssid");
       res.redirect("/");
     }
-  },
-
-  register: (req, res) => {
-    res.render("home/register", {
-      title: "Register Page - Website about the House",
-    });
-  },
-  postRegister: (req, res) => {
-    User.create({
-      username: req.body.username,
-      fullname: req.body.fullname,
-      address: req.body.address,
-      phone: req.body.phone,
-      email: req.body.email,
-      password: md5(req.body.password),
-    })
-      .then(() => {
-        res.redirect("/auth/login");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   },
 };

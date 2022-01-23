@@ -20,7 +20,8 @@ block content
                                     .col-md-9 
                                         .form-group.d-flex
                                             input#check-1.form-control(type="text", name="name", placeholder="Mời nhập size")
-                                            label#error-1.lable-error
+                                            if (message) 
+                                                label#error-1(style="dislay:block;font-zise:12px")= message
                                     .col-md-3
                                         .form-group
                                             button.btn.btn-primary(type="submit") Thêm mới

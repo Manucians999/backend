@@ -1,4 +1,4 @@
-const authenticate = function (req, res, next) {
+const authenticate = (req, res, next) => {
   if (!req.signedCookies.ssaid) {
     res.redirect("/auth/login");
     return;

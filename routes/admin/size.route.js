@@ -5,12 +5,13 @@ const {
   createSize,
   deleteSize,
 } = require("../../controllers/admin/size.controller");
+const { validationSizes } = require("../../middlewares/validation.middlewares");
 
 const router = express.Router();
 
 router.get("/", getAllSize);
 
-router.post("/", createSize);
+router.post("/", validationSizes,createSize);
 
 router.get("/delete=:id", deleteSize);
 

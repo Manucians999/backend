@@ -6,6 +6,7 @@ const fileUpload = require("express-fileupload");
 const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const homeRouter = require("./routes/home.route");
 const productRouter = require("./routes/product.route");
@@ -21,6 +22,8 @@ const { authenticate } = require("./middlewares/auths.middleware");
 const app = express();
 
 const PORT = process.env.PORT | 3000;
+
+app.use(cors());
 
 app.use(cookieParser("Cookie"));
 app.use(bodyParser.urlencoded({ extended: false }));

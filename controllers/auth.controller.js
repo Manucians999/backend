@@ -58,7 +58,7 @@ const postLogin = async (req, res) => {
   });
 
   if (!user) {
-    res.redirect("auth/login", {
+    res.render("auth/login", {
       title: "This is login page",
       message: objFind.username
         ? "Username không tồn tại"
@@ -77,7 +77,6 @@ const postLogin = async (req, res) => {
     return;
   }
 
-  console.log("user.role.slug", user.role);
 
   if (user.role.slug === "admin") {
     res.cookie("ssaid", user._id, {

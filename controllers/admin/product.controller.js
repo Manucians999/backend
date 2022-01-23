@@ -27,9 +27,10 @@ const getAllProduct = async (req, res) => {
 };
 
 const indexCreateProduct = async (req, res) => {
-  const colors = await Color.find();
+  let colors = await Color.find();
   const producers = await Producer.find();
   const sizes = await Size.find();
+  colors = colors.filter(c => c.status>0)
   res.render("admin/product/create", {
     colors,
     producers,
@@ -39,14 +40,11 @@ const indexCreateProduct = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-  let listImage = [];
   const image = req.files.image;
   await image.mv(
     path.resolve(__dirname, "../../public/uploads", image.name),
     async function (err) {
       if (err) console.log(err);
-      listImage.push({ url: `/uploads/${image.name}` });
-
       const newProduct = new Product({
         name: req.body.name,
         slug: slugify(req.body.name.toLowerCase()),
@@ -54,10 +52,11 @@ const createProduct = async (req, res) => {
         size: req.body.size,
         producer: req.body.producer,
         color: req.body.color,
-        images: listImage,
+        images: `/uploads/${image.name}`,
         description: req.body.description,
       });
       await newProduct.save();
+      
     }
   );
   res.redirect("/admin/products");
@@ -90,26 +89,25 @@ const indexUpdateProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
-  let listImage = [];
   const image = req.files.image;
   await image.mv(
     path.resolve(__dirname, "../../public/uploads", image.name),
     async function (err) {
       if (err) console.log(err);
-      listImage.push({ url: `/uploads/${image.name}` });
 
-      const newProduct = new Product({
+      const newProduct = {
         name: req.body.name,
         slug: slugify(req.body.name.toLowerCase()),
         price: Number(req.body.price),
         size: req.body.size,
         producer: req.body.producer,
         color: req.body.color,
-        images: listImage,
+        images: `/uploads/${image.name}`,
         description: req.body.description,
-      });
+      };
       await Product.updateOne({ slug: req.params.slug }, newProduct);
     }
+    
   );
   res.redirect("/admin/products");
 };

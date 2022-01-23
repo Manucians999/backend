@@ -11,7 +11,7 @@ block content
                                     h2 Real shoes 
                                         p Thương hiệu giày show maker
                                         p
-                                        a.btn.btn-primary(href='/products/load=H78vnx4c') Tìm hiểu
+                                        //- a.btn.btn-primary(href='/products/load=H78vnx4c') Tìm hiểu
                         .col-md-6
                             .category-wrap.ftco-animate.img.mb-4.d-flex.align-items-end(style='background-image: url(image/gtt.png);')
                                 .text.px-3.py-1
@@ -20,7 +20,7 @@ block content
                             .category-wrap.ftco-animate.img.d-flex.align-items-end(style='background-image: url(image/gtt1.png);')
                                 .text.px-3.py-1
                                     h2.mb-0
-                                        a(href='/products/load=N0YRx_qf-') Giày cao gót
+                                        a(href='/products/load=N0YRx_qf-') Giày Thiết Kế
                 .col-md-4
                     .category-wrap.ftco-animate.img.mb-4.d-flex.align-items-end(style='background-image: url(image/gtt.png);')
                         .text.px-3.py-1
@@ -39,37 +39,37 @@ block content
             .row.autoplay
                 each item in data
                     .col-md-6.col-lg-3.ftco-animate
-                            .product
-                                a.img-prod(href='/products/id='+item._id)
-                                    img.img-fluids(src= item.images[0].url, alt='Colorlib Template') 
-                                        
-                                .text.py-3.pb-4.px-3.text-center
-                                    h3
-                                        a(href='#')= item.name
-                                    .d-flex
-                                        .pricing
-                                            p.price
-                                                span.price-sale Chi tiết
-                                        .bottom-area.d-flex.px-3
-                                            .m-auto.d-flex
-                                                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='/products/id='+item.id)
-                                                    span
-                                                        i.ion-ios-menu
-                                                a.heart.d-flex.justify-content-center.align-items-center(href='/crops/like='+item.id)
-                                                    span
-                                                        i.ion-ios-heart
+                        .product
+                            a.img-prod(href='/products/'+item.slug)
+                                img.img-fluids(src= item.images, alt='Colorlib Template') 
+                                    
+                            .text.py-3.pb-4.px-3.text-center
+                                h3
+                                    a(href='#')= item.name
+                                .d-flex
+                                    .pricing
+                                        p.price
+                                            span.price-sale Chi tiết
+                                    .bottom-area.d-flex.px-3
+                                        .m-auto.d-flex
+                                            a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='/products/id='+item.id)
+                                                span
+                                                    i.ion-ios-menu
+                                            a.heart.d-flex.justify-content-center.align-items-center(href='/crops/like='+item.id)
+                                                span
+                                                    i.ion-ios-heart
     section.ftco-section.ftco-no-pb.ftco-no-pt
         .container
             .row.justify-content-center.mb-2.pb-2
                 .col-md-12.heading-section.text-center.ftco-animate
-                    span.subheading Giày cao gót
+                    span.subheading Giày Thiết Kế
         .container
             .row.autoplay
                 each item in data
                     .col-md-6.col-lg-3.ftco-animate
                             .product
                                 a.img-prod(href='/products/id='+item._id)
-                                    img.img-fluids(src= item.images[0].url, alt='Colorlib Template')
+                                    img.img-fluids(src= item.images, alt='Colorlib Template')
                                         
                                 .text.py-3.pb-4.px-3.text-center
                                     h3
@@ -97,7 +97,7 @@ block content
                     .col-md-6.col-lg-3.ftco-animate
                             .product
                                 a.img-prod(href='/products/id='+item._id)
-                                    img.img-fluids(src= item.images[0].url, alt='Colorlib Template')
+                                    img.img-fluids(src= item.images, alt='Colorlib Template')
                                         
                                 .text.py-3.pb-4.px-3.text-center
                                     h3
@@ -125,7 +125,7 @@ block content
                     .col-md-6.col-lg-3.ftco-animate
                             .product
                                 a.img-prod(href='/products/id='+item._id)
-                                    img.img-fluids(src= item.images[0].url, alt='Colorlib Template')
+                                    img.img-fluids(src= item.images, alt='Colorlib Template')
                                         
                                 .text.py-3.pb-4.px-3.text-center
                                     h3

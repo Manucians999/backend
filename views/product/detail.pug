@@ -1,6 +1,6 @@
 extends ../layouts/index
 block content
-  //- if(seed.image=== '')
+  //- if(product.image=== '')
   //-   .hero-wrap.hero-bread(style= image)
   //-     .container
   //-       .row.no-gutters.slider-text.align-items-center.justify-content-center
@@ -12,7 +12,7 @@ block content
   //-               span /
   //-             span.mr-2
   //-               a(href='/products/load=z1f7dsf') Nhà cho thuê
-  //-           h1.mb-0.bread= seed.name
+  //-           h1.mb-0.bread= product.name
   //- else
   //-   .hero-wrap.hero-bread(style= style)
   //-     .container
@@ -30,54 +30,57 @@ block content
     .container
       .row
         .col-lg-6.mb-5.ftco-animate
-          a.image-popup(href=seed.images[0].url)
-            img.img-fluid(src=seed.images[0].url, alt='Colorlib Template')
+          a.image-popup(href=`#`)
+            img.img-fluid(src=`${product.images[0].url}`, alt='Colorlib Template')
         .col-lg-6.product-details.pl-md-5.ftco-animate
-          h3= seed.name
+          h3= product.name
           .rating.f
             p.text-left
               h5
                 span Màu sắc
-              p.text-left.ml-2(style="text-align: justify")=seed.color
+              if(product.color.length > 0)
+                p.text-left.ml-2(style="text-align: justify")=product.color[0].name
+              else 
+                p.text-left.ml-2(style="text-align: justify") no color
               h5
                 span Kích thước
-              p.text-left.ml-2(style="text-align: justify")= seed.size
+              p.text-left.ml-2(style="text-align: justify")= product.size[0].name
               h5
                 span Giá
-              p.text-left.ml-2(style="text-align: justify")= seed.price
+              p.text-left.ml-2(style="text-align: justify")= product.price
         .col-lg-12.product-details.pl-md-5.ftco-animate 
             h5
               span Thông tin mô tả
             p
-              p(style="text-align: justify")= seed.description
+              p(style="text-align: justify")= product.description
 
   section.ftco-section
         .container
             .row.justify-content-center
                 .col-md-12.heading-section.text-center.ftco-animate
                     span
-                        h3.subheading.price Các loại nhà liên quan
-        .container
-            .row.autoplay
-                each item in types
-                    .col-md-6.col-lg-3.ftco-animate
-                        .product
-                            a.img-prod(href='#')
-                                img.img-fluid(src=`${item.images[0].url}`, alt='Colorlib Template')
-                                span.status New
-                                .overlay
-                            .text.py-3.pb-4.px-3.text-center
-                                h3
-                                    a(href='#')= item.name
-                                .d-flex
-                                .pricing
-                                    p.price
-                                        span.price-sale Chi tiết
-                                .bottom-area.d-flex.px-3
-                                    .m-auto.d-flex
-                                        a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='/crops/id='+item.id)
-                                            span
-                                                i.ion-ios-menu
-                                        a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                                            span
-                                                i.ion-ios-heart
+                        h3.subheading.price Sản phẩm liên quan
+        //- .container
+        //-     .row.autoplay
+        //-         each item in product
+        //-             .col-md-6.col-lg-3.ftco-animate
+        //-                 .product
+        //-                     a.img-prod(href='#')
+        //-                         img.img-fluid(src=`${item.images[0].url}`, alt='Colorlib Template')
+        //-                         span.status New
+        //-                         .overlay
+        //-                     .text.py-3.pb-4.px-3.text-center
+        //-                         h3
+        //-                             a(href='#')= item.name
+        //-                         .d-flex
+        //-                         .pricing
+        //-                             p.price
+        //-                                 span.price-sale Chi tiết
+        //-                         .bottom-area.d-flex.px-3
+        //-                             .m-auto.d-flex
+        //-                                 a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='/crops/id='+item.id)
+        //-                                     span
+        //-                                         i.ion-ios-menu
+        //-                                 a.heart.d-flex.justify-content-center.align-items-center(href='#')
+        //-                                     span
+        //-                                         i.ion-ios-heart

@@ -39,7 +39,7 @@ block content
                                         td= user.phone
                                         td= user.address
                                         td
-                                            a(href="/admin/users/"+user.id).btn.btn=user.role.slug === "admin" ? "Admin" : "User"
+                                            a(href="/admin/users/update="+user.id).btn.btn=user.role.slug === "admin" ? "Admin" : "User"
                                         td
                                             a(href="/admin/users/delete="+ user.id).btn.btn-danger Xóa
 
