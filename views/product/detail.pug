@@ -31,20 +31,20 @@ block content
       .row
         .col-lg-6.mb-5.ftco-animate
           a.image-popup(href=`#`)
-            img.img-fluid(src=`${product.images[0].url}`, alt='Colorlib Template')
+            img.img-fluid(src=`${product.images}`, alt='Colorlib Template')
         .col-lg-6.product-details.pl-md-5.ftco-animate
           h3= product.name
           .rating.f
             p.text-left
               h5
                 span Màu sắc
-              if(product.color.length > 0)
-                p.text-left.ml-2(style="text-align: justify")=product.color[0].name
+              if(product.color.name)
+                p.text-left.ml-2(style="text-align: justify")=product.color.name
               else 
                 p.text-left.ml-2(style="text-align: justify") no color
               h5
                 span Kích thước
-              p.text-left.ml-2(style="text-align: justify")= product.size[0].name
+              p.text-left.ml-2(style="text-align: justify")= product.size.name
               h5
                 span Giá
               p.text-left.ml-2(style="text-align: justify")= product.price
@@ -66,7 +66,7 @@ block content
         //-             .col-md-6.col-lg-3.ftco-animate
         //-                 .product
         //-                     a.img-prod(href='#')
-        //-                         img.img-fluid(src=`${item.images[0].url}`, alt='Colorlib Template')
+        //-                         img.img-fluid(src=`${item.images.url}`, alt='Colorlib Template')
         //-                         span.status New
         //-                         .overlay
         //-                     .text.py-3.pb-4.px-3.text-center
