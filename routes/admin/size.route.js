@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/", getAllSize);
 
-router.post("/", validationSizes,createSize);
+router.post("/", validationSizes, createSize);
 
 router.get("/delete=:id", deleteSize);
 

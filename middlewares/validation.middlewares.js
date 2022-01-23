@@ -1,6 +1,7 @@
+const { check, validationResult } = require("express-validator");
 const Size = require("../models/size.model");
 
-const validationSizes = async (req, res, next) => {
+exports.validationSizes = async (req, res, next) => {
   const { name } = req.body;
   const sizes = await Size.find();
   if (isNaN(name)) {
@@ -14,4 +15,18 @@ const validationSizes = async (req, res, next) => {
   next();
 };
 
-module.exports = { validationSizes };
+exports.validatorRegister = [
+  check("email").isEmail().withMessage("Không phải email"),
+  check("fullName").notEmpty().withMessage("Họ tên không được được để trống"),
+  check("phone").notEmpty().withMessage("Sdt được được để trống"),
+  check("address").notEmpty().withMessage("Địa chỉ được được để trống"),
+  check("password")
+    .isLength({ min: 4 })
+    .withMessage("Mật khẩu ít nhất 4 kí tự"),
+];
+
+exports.validatorLogin = [
+  check("password")
+    .isLength({ min: 4 })
+    .withMessage("Mật khẩu ít nhất 4 kí tự"),
+];
