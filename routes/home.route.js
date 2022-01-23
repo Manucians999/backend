@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require("express");
 
-const homeController = require('../controllers/home.controller');
+const { indexHome, logout } = require("../controllers/home.controller");
 
 const router = express.Router();
 
-router.get('/', homeController.index);
+router.get("/", indexHome);
 
-router.get('/logout', homeController.logout);
+router.get("/logout", logout);
 
 module.exports = router;

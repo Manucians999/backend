@@ -4,18 +4,11 @@ block content
         .container
                 .row
                     .col-lg-3.mb-3
-                        .product.mb-0.p-3(style='background: green; color: white')
+                        .product.mb-0.p-3(style='background: white; color: black')
                             span Danh sách sản phầm
                             span(style='float: right')= size
-                        //- each item in data
-                        //-     .product.mb-0
-                        //-         a#dropdown04.nav-link(href="/products/load="+item.id, data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                        //-             //- span= crops[item].name
-                        //-             span(style='float: right')
-                        //-         //- each types in listTypes[item]
-                        //-         .dropdown-show(aria-labelledby='dropdown04')
-                        //-             .product.mb-0
-                        //-                 a.nav-link(href="/products/load=", style='color: blue')
-                        //-                     span(style='float: right')
+                            each producer in producers
+                                .product.mb-0
+                                    a.nav-link(href="/products/load/"+producer.slug, style="text-transform: uppercase; color: #333")= producer.name
                     .col-lg-9
                         block load

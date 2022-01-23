@@ -1,39 +1,57 @@
 const Product = require("../models/product.model");
+const Producer = require("../models/producer.model");
 
-module.exports = {
-  get_product_by_slug: async (req, res) => {
-    const product = await Product.findOne({slug: req.params.slug})
-      .populate({
-        path: "size",
-        select: "_id name",
-      })
-      .populate({
-        path: "producer",
-        select: "_id name",
-      })
-      .populate({
-        path: "color",
-        select: "_id name",
-      });
-    res.render("product/detail", {
-      product,
-      title: "Product Page ",
+const getProductBySlug = async (req, res) => {
+  const product = await Product.findOne({ slug: req.params.slug })
+    .populate({
+      path: "size",
+      select: "_id name",
+    })
+    .populate({
+      path: "producer",
+      select: "_id name",
+    })
+    .populate({
+      path: "color",
+      select: "_id name",
     });
-  },
-
-  index: async (req, res) => {
-    const product = await Product.find();
-    res.render("product/index", {
-      data: product,
-      title: "Products Page",
-    });
-  },
-
-  loadProducts: async (req, res) => {
-    const product = await Product.find();
-    res.render("product/load", {
-      data: product,
-      title: "Products Page",
-    });
-  },
+  res.render("product/detail", {
+    product,
+    title: "Product Page ",
+  });
 };
+
+const indexProduct = async (req, res) => {
+  const products = await Product.find();
+  const producers = await Producer.find();
+  res.render("product/index", {
+    products,
+    producers,
+    title: "Products Page",
+  });
+};
+const loadProducts = async (req, res) => {
+  const producers = await Producer.find();
+  const idProducer = producers.find((item) => item.slug === req.params.slug);
+  const findObj = idProducer ? { producer: idProducer.id } : {};
+  const product = await Product.find(findObj)
+    .populate({
+      path: "size",
+      select: "_id name",
+    })
+    .populate({
+      path: "producer",
+      select: "_id name",
+    })
+    .populate({
+      path: "color",
+      select: "_id name",
+    });
+  res.render("product/load", {
+    data: product,
+    producers,
+    title: "Products Page",
+  });
+};
+
+module.exports = { getProductBySlug, indexProduct, loadProducts };
